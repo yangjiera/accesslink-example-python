@@ -51,4 +51,7 @@ class AccessLink(object):
 
     def get_userdata(self, user_id,access_token):
         return self.oauth.get(endpoint="/users/"+ str(user_id), access_token= access_token)
+    
+    def get_heartratedata(self, date, access_token):
+        return self.oauth.get(endpoint="/users/continuous-heart-rate/?from=2023-05-25&to=2023-05-28", access_token= access_token)
 

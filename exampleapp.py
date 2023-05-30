@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from __future__ import print_function
-from asyncio.windows_events import NULL
+# from asyncio.windows_events import NULL
 from genericpath import exists
 from pickle import NONE
 
@@ -42,10 +42,12 @@ def data():
         sleepdata = accesslink.get_sleep(access_token=item["access_token"])
         rechargedata = accesslink.get_recharge(access_token=item["access_token"])
         userdata = accesslink.get_userdata(user_id=item["user_id"], access_token=item["access_token"])
+        heartratedata = accesslink.get_heartratedata(date="2023-01-01", access_token=item["access_token"])
         alldata.append( {"exercises": exercisedata,
                            "sleepdata": sleepdata,
                            "recharge": rechargedata,
-                           "userdata": userdata })
+                           "userdata": userdata,
+                           "heartratedata": heartratedata })
     return render_template("data.html", alldata = alldata)
 
 @app.route(CALLBACK_ENDPOINT)
