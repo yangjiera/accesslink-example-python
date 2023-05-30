@@ -17,7 +17,7 @@ CALLBACK_ENDPOINT = "/oauth2_callback"
 CONFIG_FILENAME = "config.yml"
 TOKEN_FILENAME = "usertokens.yml"
 
-REDIRECT_URL = "http://localhost:{}{}".format(CALLBACK_PORT, CALLBACK_ENDPOINT)
+REDIRECT_URL = "http://145.38.184.143:{}{}".format(CALLBACK_PORT, CALLBACK_ENDPOINT)
 
 config = load_config(CONFIG_FILENAME)
 
@@ -121,7 +121,7 @@ def token_db():
 
 def main():
     print("Navigate to http://localhost:{port}/ for authorization.\n".format(port=CALLBACK_PORT))
-    app.run(host='localhost', port=CALLBACK_PORT)
+    app.run(host='145.38.184.143', port=CALLBACK_PORT)
 
 if __name__ == "__main__":
     main()
