@@ -17,7 +17,7 @@ CALLBACK_ENDPOINT = "/oauth2_callback"
 CONFIG_FILENAME = "config.yml"
 TOKEN_FILENAME = "usertokens.yml"
 
-REDIRECT_URL = "http://145.38.184.143:{}{}".format(CALLBACK_PORT, CALLBACK_ENDPOINT)
+REDIRECT_URL = "http://127.0.0.1:{}{}".format(CALLBACK_PORT, CALLBACK_ENDPOINT)
 
 config = load_config(CONFIG_FILENAME)
 
@@ -34,7 +34,7 @@ def index():
 @app.route("/data")
 def data():
     tokens = token_db()
-    alldata = []    
+    alldata = []  
     for item in tokens["tokens"]:
         if item == None:
             continue
@@ -48,7 +48,7 @@ def data():
                            "recharge": rechargedata,
                            "userdata": userdata,
                            "heartratedata": heartratedata })
-    return render_template("data.html", alldata = alldata)
+    return render_template("data.html", alldata = [alldata[-1]])
 
 @app.route(CALLBACK_ENDPOINT)
 def callback():
@@ -121,7 +121,7 @@ def token_db():
 
 def main():
     print("Navigate to http://localhost:{port}/ for authorization.\n".format(port=CALLBACK_PORT))
-    app.run(host='145.38.184.143', port=CALLBACK_PORT)
+    app.run(host='localhost', port=CALLBACK_PORT)
 
 if __name__ == "__main__":
     main()
